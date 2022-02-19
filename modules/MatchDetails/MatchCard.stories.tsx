@@ -1,23 +1,27 @@
-import PlayerStats from "./PlayerStats";
+import MatchCard from "./MatchCard";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Match Details/Player Stats",
-  component: PlayerStats,
-} as ComponentMeta<typeof PlayerStats>;
+  title: "Match Details/Match Card",
+  component: MatchCard,
+} as ComponentMeta<typeof MatchCard>;
 
-const Template: ComponentStory<typeof PlayerStats> = (args) => (
-  <PlayerStats {...args} />
+const Template: ComponentStory<typeof MatchCard> = (args) => (
+  <MatchCard {...args} />
 );
 
-export const Stats = Template.bind({});
-Stats.args = {
+export const Card = Template.bind({});
+Card.args = {
+  won: true,
+  roundsPlayed: 18,
+  roundsWon: 13,
   score: 500,
   kills: 18,
   deaths: 14,
   assists: 6,
   uuid: "test",
+  character: "Jett",
   match: {
     matchInfo: {
       matchId: "1",
@@ -108,9 +112,9 @@ Stats.args = {
               {
                 receiver: "",
                 damage: 1,
-                legshots: 5,
-                bodyshots: 20,
-                headshots: 7,
+                legshots: 1,
+                bodyshots: 1,
+                headshots: 1,
               },
             ],
             score: 1,

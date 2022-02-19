@@ -7,19 +7,17 @@ type MatchResultProps = {
 };
 
 const MatchResult = ({ won, roundsWon, roundsPlayed }: MatchResultProps) => {
-  let color = "red";
-  if (won) {
-    color = "green";
-  }
+  const color = won ? "green" : "red";
   return (
     <Group position="center" direction="column" spacing={2}>
-      <Text color="#f5f5dc" size="lg" weight="bold">
+      <Text color={color} size="lg" weight="bold">
         {won ? "Victory" : "Defeat"}
       </Text>
+
       <Group spacing={5}>
         <Text color={color}>{roundsWon}</Text>
-        <Text>:</Text>
-        <Text color="gray"> {roundsPlayed - roundsWon} </Text>
+        <Text color="white">:</Text>
+        <Text color="white">{roundsPlayed - roundsWon}</Text>
       </Group>
     </Group>
   );
