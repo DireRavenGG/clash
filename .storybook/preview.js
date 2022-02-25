@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import * as NextImage from "next/image";
+import { MantineProvider } from "@mantine/core";
 
 const OriginalNextImage = NextImage.default;
 
@@ -17,3 +18,17 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colorScheme: "light",
+      }}
+    >
+      <Story />
+    </MantineProvider>
+  ),
+];
