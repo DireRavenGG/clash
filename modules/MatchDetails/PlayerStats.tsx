@@ -1,11 +1,8 @@
 import { Text, Group, Badge } from "@mantine/core";
-import {
-  calcHeadshot,
-  getDamageStats,
-  getPlayerStats,
-} from "../../utils/calcHeadshot";
+import { calcHeadshot } from "../../utils/calcHeadshot";
 import { MatchDto } from "../../types/MatchApi";
 import { matchRanking } from "../../utils/matchRanking";
+
 type PlayerStatsProps = {
   score: number;
   kills: number;
@@ -71,7 +68,7 @@ const PlayerStats = ({
       </Group>
       <Group position="center" direction="column" spacing={0}>
         <Text color="white" size="lg" weight="bold">
-          {`${calcHeadshot(getDamageStats(getPlayerStats(match), uuid))} %`}
+          {`${calcHeadshot(match, uuid)} %`}
         </Text>
         <Text color="white" size="xs" weight="lighter">
           Headshot %

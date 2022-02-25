@@ -1,6 +1,6 @@
-import { DamageDto, MatchDto, PlayerRoundStatsDto } from "types/MatchApi";
+import { MatchDto, PlayerRoundStatsDto } from "types/MatchApi";
 
-export const getPlayerStats = (match: MatchDto) => {
+const getPlayerStats = (match: MatchDto) => {
   const playerStatsArr = [];
   const roundResults = match.roundResults;
   for (let i = 0; i < roundResults.length; i++) {
@@ -10,7 +10,7 @@ export const getPlayerStats = (match: MatchDto) => {
   return playerStatsArr;
 };
 
-export const getDamageStats = (arr: PlayerRoundStatsDto[], puuid: string) => {
+const getDamageStats = (arr: PlayerRoundStatsDto[], puuid: string) => {
   const damageArr = [];
   const filteredArr = arr.filter((obj) => obj.puuid == puuid);
   for (let i = 0; i < filteredArr.length; i++) {
@@ -19,10 +19,11 @@ export const getDamageStats = (arr: PlayerRoundStatsDto[], puuid: string) => {
   return damageArr;
 };
 
-export const calcHeadshot = (stats: DamageDto[]) => {
+export const calcHeadshot = (match: MatchDto, uuid: string) => {
   let totalShots = 0;
   let totalHeadshots = 0;
-
+  let playerStats = getPlayerStats(match);
+  let stats = getDamageStats(playerStats, uuid);
   for (let i = 0; i < stats.length; i++) {
     const legshots = stats[i].legshots;
     const bodyshots = stats[i].bodyshots;
