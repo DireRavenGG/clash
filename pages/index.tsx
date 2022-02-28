@@ -1,4 +1,4 @@
-import PlayerStats from "modules/MatchDetails/PlayerStats";
+import PlayerStats from "modules/MatchList/MatchCard/PlayerStats";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
