@@ -1,7 +1,7 @@
 import { Text, Group, Badge } from "@mantine/core";
-import { calcHeadshot } from "../../utils/calcHeadshot";
-import { MatchDto } from "../../types/MatchApi";
-import { matchRanking } from "../../utils/matchRanking";
+import { calcHeadshot } from "../../../utils/calcHeadshot";
+import { MatchDto } from "../../../types/MatchApi";
+import { matchRanking } from "../../../utils/matchRanking";
 
 type PlayerStatsProps = {
   score: number;
