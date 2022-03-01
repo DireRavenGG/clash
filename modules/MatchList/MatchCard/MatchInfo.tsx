@@ -1,15 +1,22 @@
 import { Group, Text } from "@mantine/core";
+import { MatchDto } from "types/MatchApi";
+import { calcCSPerMin } from "utils/calcCSPerMin";
+import { killParticipation } from "utils/killParticipation";
 
 type MatchInfoProps = {
-  map: string;
-  queue: string;
+  match: MatchDto;
+  uuid: string;
+  cs: number;
+  level: number;
+  gameLength: number;
 };
-// change this shit
-const MatchInfo = ({ map, queue }: MatchInfoProps) => {
+
+const MatchInfo = ({ match, uuid, cs, level, gameLength }: MatchInfoProps) => {
   return (
     <Group>
-      <Text weight="bold">{queue}</Text>
-      <Text>{map}</Text>
+      <Text>{`Level ${level}`}</Text>
+      <Text>{`${cs} ${calcCSPerMin(cs, gameLength)}`}</Text>
+      <Text>{`K/P ${killParticipation(match, uuid)}%`}</Text>
     </Group>
   );
 };

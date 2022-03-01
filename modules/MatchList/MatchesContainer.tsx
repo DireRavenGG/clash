@@ -2,22 +2,23 @@ import { Button, Container } from "@mantine/core";
 import MatchCard from "modules/MatchList/MatchCard/MatchCard";
 import { useEffect, useState } from "react";
 import { MatchDto } from "types/MatchApi";
-import { MatchesListDto } from "types/MatchList";
+
 import { getUserStats } from "utils/getUserStats";
 import { paginateMatchList } from "utils/paginateMatchList";
+// Fix this shit
 
 interface MatchesContainerProps {
-  matchList: MatchesListDto;
+  matchList: string[];
   id: string;
 }
 
-const MatchesContainer = ({ matchList }: MatchesContainerProps) => {
-  const matches = matchList.history;
-  const puuid = matchList.puuid;
+const MatchesContainer = ({ matchList, id }: MatchesContainerProps) => {
+  const matches = matchList;
+
   let paginatedMatchIds = [];
   useEffect(() => {
     const paginatedMatches = paginateMatchList(matches);
-    paginatedMatches.map((match) => paginatedMatchIds.push(match.matchId));
+    paginatedMatches.map((match) => paginatedMatchIds.push(match));
   });
 
   // call the api using matchIds
@@ -30,14 +31,14 @@ const MatchesContainer = ({ matchList }: MatchesContainerProps) => {
 
   const clickHandler = () => {
     const paginatedMatches = paginateMatchList(matches);
-    paginatedMatches.map((match) => paginatedMatchIds.push(match.matchId));
+    paginatedMatches.map((match) => paginatedMatchIds.push(match));
   };
 
   return (
     <>
       <Container>
         {retreivedMatches.map((match) => {
-          <MatchCard match={match} {...getUserStats(match, puuid)} />;
+          <MatchCard {...getUserStats(match, id)} />;
         })}
       </Container>
       <Button onClick={clickHandler}>Load More...</Button>
