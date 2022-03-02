@@ -1,7 +1,7 @@
 import { Group, Text } from "@mantine/core";
 import { MatchDto } from "types/MatchApi";
-import { calcCSPerMin } from "utils/calcCSPerMin";
-import { killParticipation } from "utils/killParticipation";
+import { calcCSPerMin } from "utils/stats/calcCSPerMin";
+import { killParticipation } from "utils/stats/killParticipation";
 
 type MatchInfoProps = {
   match: MatchDto;

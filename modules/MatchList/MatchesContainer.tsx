@@ -2,7 +2,6 @@ import { Button, Container } from "@mantine/core";
 import MatchCard from "modules/MatchList/MatchCard/MatchCard";
 import { useEffect, useState } from "react";
 import { MatchDto } from "types/MatchApi";
-
 import { getUserStats } from "utils/getUserStats";
 import { paginateMatchList } from "utils/paginateMatchList";
 // Fix this shit

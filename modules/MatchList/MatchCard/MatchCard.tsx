@@ -12,7 +12,6 @@ interface MatchCardProps {
   uuid: string;
   match: MatchDto;
   win: boolean;
-
   champion: string;
   cs: number;
   gameLength: number;
