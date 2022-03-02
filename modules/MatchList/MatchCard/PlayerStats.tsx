@@ -1,5 +1,4 @@
 import { Text, Group, Badge } from "@mantine/core";
-import { killParticipation } from "utils/killParticipation";
 import { MatchDto } from "../../../types/MatchApi";
 
 type PlayerStatsProps = {
