@@ -21,3 +21,5 @@ export const getUserStats = (match: MatchDto, id: string) => {
     level: userStats.champLevel,
   };
 };
+// Probably cant use Match if going to save in DB...
+// Probably should do logic before passing down to frontend.

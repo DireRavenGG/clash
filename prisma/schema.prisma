@@ -1,0 +1,28 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  id String @unique
+  userName String @unique
+  matches Match[]
+}
+// Make sure to add something for Kill Participation 
+// Was passing down Match to frontend
+// seems bad. need way to save to DB.
+model Match{
+  user Player @relation(fields: [userId], references: [id])
+  id Int @id @default(autoincrement())
+  userId String 
+  kills String
+  deaths String
+  assists String
+  win Boolean
+  champion String
+  summonerSpell1 Int
+  summonerSpell2 Int
+  cs Int
+  gameLength Int
+  level Int
+}
