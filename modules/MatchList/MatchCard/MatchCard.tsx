@@ -1,57 +1,59 @@
 import { Card, Divider, Group } from "@mantine/core";
 import MatchResult from "./MatchResult";
 import PlayerStats from "./PlayerStats";
-import PlayerDetails from "./PlayerDetails";
+
 import { MatchDto } from "types/MatchApi";
+import MatchInfo from "./MatchInfo";
 
 interface MatchCardProps {
-  score: number;
   kills: number;
   deaths: number;
   assists: number;
   uuid: string;
   match: MatchDto;
-  won: boolean;
-  roundsWon: number;
-  roundsPlayed: number;
-  character: string;
+  win: boolean;
+  champion: string;
+  cs: number;
+  gameLength: number;
+  level: number;
 }
 
 const MatchCard = ({
-  score,
   kills,
   deaths,
   assists,
-  match,
   uuid,
-  won,
-  roundsWon,
-  roundsPlayed,
-  character,
+  win,
+  champion,
+  match,
+  cs,
+  gameLength,
+  level,
 }: MatchCardProps) => {
   return (
     <Card padding="lg" style={{ background: "#fef1" }}>
       <Group position="apart">
         <Group>
-          <PlayerDetails character={character} />
-          <MatchResult
-            won={won}
-            roundsWon={roundsWon}
-            roundsPlayed={roundsPlayed}
-          />
+          <MatchResult win={win} />
         </Group>
 
         <Group>
           <Divider style={{ height: "auto" }} orientation="vertical" />
           <PlayerStats
-            score={score}
+            match={match}
             kills={kills}
             deaths={deaths}
             assists={assists}
-            match={match}
             uuid={uuid}
           />
         </Group>
+        <MatchInfo
+          match={match}
+          cs={cs}
+          uuid={uuid}
+          level={level}
+          gameLength={gameLength}
+        />
       </Group>
     </Card>
   );

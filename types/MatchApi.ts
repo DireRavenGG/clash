@@ -1,140 +1,185 @@
 export interface MatchDto {
-  matchInfo: MatchInfoDto;
-  players: PlayerDto[];
-  coaches: CoachDto[];
-  teams: TeamDto[];
-  roundResults: RoundResultsDto[];
+  metadata: MetaDataDto;
+  info: InfoDto;
 }
 
-interface MatchInfoDto {
+interface MetaDataDto {
+  dataVersion: string;
   matchId: string;
-  mapId: string;
-  gameLengthMillis: number;
-  gameStartMillis: number;
-  provisioningFlowId: string;
-  isCompleted: boolean;
-  customGameName: string;
-  queueId: string;
+  participants: string[];
+}
+
+interface InfoDto {
+  gameCreation: number;
+  gameDuration: number;
+  gameEndTimestamp: number;
+  gameId: number;
   gameMode: string;
-  isRanked: boolean;
-  seasonId: string;
-}
-
-interface PlayerDto {
-  puuid: string;
   gameName: string;
-  tagLine: string;
-  teamId: string;
-  partyId: string;
-  characterId: string;
-  stats: PlayerStatsDto;
-  competitiveTier: number;
-  playerCard: string;
-  playerTitle: string;
+  gameStartTimestamp: number;
+  gameType: string;
+  gameVersion: string;
+  mapId: number;
+  participants: ParticipantDto[];
+  platformId: string;
+  queueId: number;
+  teams: TeamDto[];
+  tournamentCode: string;
 }
 
-interface PlayerStatsDto {
-  score: number;
-  roundsPlayed: number;
-  kills: number;
-  deaths: number;
+interface ParticipantDto {
   assists: number;
-  playtimeMillis: number;
-  abilityCasts: AbilityCastsDto;
-}
-
-interface AbilityCastsDto {
-  grenadeCasts: number;
-  ability1Casts: number;
-  ability2Casts: number;
-  ultimateCasts: number;
-}
-
-interface CoachDto {
+  baronKills: number;
+  bountyLevel: number;
+  champExperience: number;
+  champLevel: number;
+  championId: number;
+  championName: string;
+  championTransform: number;
+  consumablesPurchased: number;
+  damageDealtToBuilding: number;
+  damageDealtToObjectives: number;
+  damageDealtToTurrets: number;
+  damageSelfMitigated: number;
+  deaths: number;
+  detectorWardsPlaced: number;
+  doubleKills: number;
+  dragonKills: number;
+  firstBloodAssists: boolean;
+  firstBloodKill: boolean;
+  firstTowerAssist: boolean;
+  firstTowerKill: boolean;
+  gameEndedInEarlySurrender: boolean;
+  gameEndedInSurrender: boolean;
+  goldEarned: number;
+  goldSpent: number;
+  individualPosition: string;
+  inhibitorKills: number;
+  inhibitorTakedowns: number;
+  inhibitorLost: number;
+  item0: number;
+  item1: number;
+  item2: number;
+  item4: number;
+  item5: number;
+  item6: number;
+  itemsPurchased: number;
+  killingSprees: number;
+  kills: number;
+  lane: string;
+  largestCriticalStrike: number;
+  largestKillingSpree: number;
+  largestMultiKill: number;
+  longestTimeSpentLiving: number;
+  magicDamageDealt: number;
+  magicDamageDealtToChampions: number;
+  magicDamageTaken: number;
+  netutralMinionsKilled: number;
+  nexusKills: number;
+  nexusTakedowns: number;
+  nexusLost: number;
+  objectivesStolen: number;
+  objectivesStolenAssists: number;
+  participantId: number;
+  pentaKills: number;
+  perks: PerksDto;
+  physicalDamgageDealt: number;
+  physicalDamgageDealtToChampions: number;
+  physicalDamageTaken: number;
+  profileIcon: number;
   puuid: string;
-  teamId: string;
+  quadraKills: number;
+  riotIdName: string;
+  riotIdTagline: string;
+  role: string;
+  sightWardsBoughtInGame: number;
+  spell1Casts: number;
+  spell2Casts: number;
+  spell3Casts: number;
+  spell4Casts: number;
+  summoner1Casts: number;
+  summoner1Id: number;
+  summoner2Casts: number;
+  summoner2Id: number;
+  summonerId: string;
+  summonerLevel: number;
+  summonerName: string;
+  teamEarlySurrendered: boolean;
+  teamId: number;
+  teamPosition: string;
+  timeCCingOthers: number;
+  timePlayeed: number;
+  totalDamageDealt: number;
+  totalDamageDealtToChampions: number;
+  totalDamageShieledOnTeammates: number;
+  totalDamageTaken: number;
+  totalHeal: number;
+  totalHealsOnTeammates: number;
+  totalMinionsKilled: number;
+  totalTimeCCDealt: number;
+  totalTimeSpentDead: number;
+  totalUnitsHealed: number;
+  tripleKills: number;
+  trueDamageDealt: number;
+  trueDamageDealtToChampions: number;
+  trueDamageTaken: number;
+  turretKills: number;
+  turretTakedowns: number;
+  turretsLost: number;
+  unrealKills: number;
+  visionScore: number;
+  visionWardsBoughtInGame: number;
+  wardsKilled: number;
+  wardsPlaced: number;
+  win: boolean;
+}
+
+interface PerksDto {
+  statPerks: PerksStatsDto;
+  styles: PerkStyleDto[];
+}
+
+interface PerksStatsDto {
+  defense: number;
+  flex: number;
+  offense: number;
+}
+
+interface PerkStyleDto {
+  description: string;
+  selections: PerkStyleSelectionDto[];
+  style: number;
+}
+
+interface PerkStyleSelectionDto {
+  perk: number;
+  var1: number;
+  var2: number;
+  var3: number;
 }
 
 interface TeamDto {
-  teamId: string;
-  won: boolean;
-  roundsPlayed: number;
-  roundsWon: number;
-  numPoints: number;
+  bans: BanDto[];
+  objectives: ObjectivesDto;
+  teamId: number;
+  win: boolean;
 }
 
-interface PlayerLocationsDto {
-  puuid: string;
-  viewRadians: number;
-  location: LocationDto;
+interface BanDto {
+  championId: number;
+  pickTurn: number;
 }
 
-interface LocationDto {
-  x: number;
-  y: number;
+interface ObjectivesDto {
+  baron: ObjectiveDto;
+  dragon: ObjectiveDto;
+  champion: ObjectiveDto;
+  inhibitor: ObjectiveDto;
+  riftHerald: ObjectiveDto;
+  tower: ObjectiveDto;
 }
 
-export interface PlayerRoundStatsDto {
-  puuid: string;
-  kills: KillDto[];
-  damage: DamageDto[];
-  score: number;
-  economy: EconomyDto;
-  ability: AbilityDto;
-}
-
-interface KillDto {
-  timeSinceGameStartMillis: number;
-  timeSinceRoundStartMillis: number;
-  killer: string;
-  victim: string;
-  victimLocation: LocationDto;
-  assistants: string[];
-  playerLocations: PlayerLocationsDto[];
-  finishingDamage: FinishingDamageDto;
-}
-
-interface FinishingDamageDto {
-  damageType: string;
-  damageItem: string;
-  isSecondaryFireMode: boolean;
-}
-
-export interface DamageDto {
-  receiver: string;
-  damage: number;
-  legshots: number;
-  bodyshots: number;
-  headshots: number;
-}
-
-interface EconomyDto {
-  loadoutValue: number;
-  weapon: string;
-  armor: string;
-  remaining: number;
-  spent: number;
-}
-
-interface AbilityDto {
-  grenadeEffects: string;
-  ability1Effects: string;
-  ability2Effects: string;
-  ulitmateEffects: string;
-}
-
-export interface RoundResultsDto {
-  roundNum: number;
-  roundResult: string;
-  roundCeremony: string;
-  winningTeam: string;
-  bombPlanter: string;
-  bombDefuser: string;
-  plantRoundTime: number;
-  plantPlayerLocations: PlayerLocationsDto[];
-  plantLocations: LocationDto;
-  plantSite: string;
-  defuseRoundTime: number;
-  defusePlayerLocation: LocationDto;
-  playerStats: PlayerRoundStatsDto[];
+interface ObjectiveDto {
+  first: boolean;
+  kills: number;
 }

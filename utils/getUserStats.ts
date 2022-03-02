@@ -1,21 +1,23 @@
 import { MatchDto } from "types/MatchApi";
 
 export const getUserStats = (match: MatchDto, id: string) => {
-  const currentUser = match.players.filter((user) => user.puuid == id);
-  // current user looks like {puuid: id, gameName: "" etc..}
-  const userStats = currentUser[0].stats;
-  const teamId = currentUser[0].teamId;
-  const team = match.teams.filter((user) => user.teamId == teamId);
-  const teamStats = team[0];
+  const gameLength = match.info.gameDuration;
+  const participants = match.info.participants;
+  const currentUser = participants.filter((user) => user.puuid == id);
+
+  const userStats = currentUser[0];
   return {
     kills: userStats.kills,
     deaths: userStats.deaths,
     assists: userStats.assists,
-    score: userStats.score,
-    roundsPlayed: teamStats.roundsPlayed,
-    roundsWon: teamStats.roundsWon,
-    won: teamStats.won,
+    win: userStats.win,
     uuid: id,
-    character: currentUser[0].characterId,
+    champion: userStats.championName,
+    summonerSpell1: userStats.summoner1Id,
+    summonerSpell2: userStats.summoner2Id,
+    cs: userStats.totalMinionsKilled,
+    match: match,
+    gameLength: gameLength,
+    level: userStats.champLevel,
   };
 };
