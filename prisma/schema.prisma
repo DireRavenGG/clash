@@ -5,8 +5,11 @@ datasource db {
 
 model Player {
   id String @unique
-  userName String @unique
+  userName String 
+  summonerLevel Int
+  profileIconId Int
   matches Match[]
+  matchlist MatchId[]
 }
 // Make sure to add something for Kill Participation 
 // Was passing down Match to frontend
@@ -25,4 +28,12 @@ model Match{
   cs Int
   gameLength Int
   level Int
+}
+
+model MatchId {
+  user Player @relation(fields: [userId], references: [id])
+  userId String
+  id Int @id @default(autoincrement())
+  matchId String
+
 }
