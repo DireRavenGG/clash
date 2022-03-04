@@ -8,8 +8,7 @@ export default async function createJob(
   const prisma = new PrismaClient({ log: ["query"] });
 
   try {
-    const { player: playerData } = req.body;
-    console.log("player", playerData.name);
+    const playerData = req.body;
 
     const player = await prisma.player.create({
       data: {
@@ -17,6 +16,8 @@ export default async function createJob(
         userName: playerData.userName,
         summonerLevel: playerData.summonerLevel,
         profileIconId: playerData.profileIconId,
+        matches: undefined,
+        matchlist: undefined,
       },
     });
     res.status(201);

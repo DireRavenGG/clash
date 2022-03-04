@@ -8,22 +8,10 @@ export default async function createJob(
   const prisma = new PrismaClient({ log: ["query"] });
 
   try {
-    const { match: matchData } = req.body;
+    const matchData = req.body;
 
-    const match = await prisma.match.create({
-      data: {
-        userId: matchData.userId,
-        kills: matchData.kills,
-        deaths: matchData.deaths,
-        assists: matchData.assists,
-        win: matchData.win,
-        champion: matchData.champion,
-        summonerSpell1: matchData.summonerSpell1,
-        summonerSpell2: matchData.summonerSpell2,
-        cs: matchData.cs,
-        gameLength: matchData.gameLength,
-        level: matchData.level,
-      },
+    const match = await prisma.match.createMany({
+      data: [...matchData],
     });
     res.status(201);
     res.json({ match });

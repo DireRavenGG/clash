@@ -1,7 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+  url      = "postgres://vcatwdosahwujh:8ad597f81d2ad69564f6253c7590dd3623096e9722f13f2efb7b21a3c73dface@ec2-52-204-29-205.compute-1.amazonaws.com:5432/df3sgka0afpaq7"
+  }
 
 model Player {
   id String @unique
@@ -28,12 +32,17 @@ model Match{
   cs Int
   gameLength Int
   level Int
+  kp Int
 }
 
 model MatchId {
   user Player @relation(fields: [userId], references: [id])
   userId String
   id Int @id @default(autoincrement())
-  matchId String
+  matchId String @unique
 
 }
+
+// model champStats {
+//  id , championId, wins, matches, k, d ,a , cs, userId 
+//}

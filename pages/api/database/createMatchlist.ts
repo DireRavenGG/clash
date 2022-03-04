@@ -6,9 +6,9 @@ export default async function createMatchlist(
   res: NextApiResponse
 ) {
   const prisma = new PrismaClient({ log: ["query"] });
-
+  console.log(`AYO THIS THE THING: ${req.body}`);
   try {
-    const { matchId: matchData } = req.body;
+    const matchData = req.body;
 
     const matchId = await prisma.matchId.createMany({
       data: [...matchData],
@@ -17,7 +17,7 @@ export default async function createMatchlist(
     res.json({ matchId });
   } catch (e) {
     console.error(e);
-    res.status(500);
+
     res.json({ error: "Sorry unable to add" });
   } finally {
     await prisma.$disconnect();

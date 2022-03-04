@@ -1,4 +1,4 @@
-import { MatchDto } from "types/MatchApi";
+import { MatchV5DTOs } from "twisted/dist/models-dto/matches/match-v5";
 
 export const calcCSPerMin = (cs: number, gameLength: number) => {
   const gameLengthMin = gameLength / 1000 / 60; // milliseconds  / second / min
@@ -6,7 +6,10 @@ export const calcCSPerMin = (cs: number, gameLength: number) => {
   return csPerMin;
 };
 
-export const killParticipation = (match: MatchDto, uuid: string) => {
+export const killParticipation = (
+  match: MatchV5DTOs.MatchDto,
+  uuid: string
+) => {
   const allPlayers = match.info.participants;
   let otherPlayerKills = 0;
   let userKP = 0;

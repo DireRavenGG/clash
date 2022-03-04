@@ -1,6 +1,6 @@
 export interface MatchDto {
-  metadata: MetaDataDto;
   info: InfoDto;
+  metadata: MetaDataDto;
 }
 
 interface MetaDataDto {

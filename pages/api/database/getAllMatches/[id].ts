@@ -1,7 +1,7 @@
 import { NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 
-export default async function fetchUser(
+export default async function getAllMatches(
   { query: { id } }: { query: any; id: string },
   res: NextApiResponse
 ) {
@@ -17,7 +17,8 @@ export default async function fetchUser(
     res.status(200);
     res.json({ user });
   } catch (e) {
-    res.json({ user: true });
+    res.status(500);
+    res.json({ error: "User not found" });
   } finally {
     await prisma.$disconnect();
   }
