@@ -9,7 +9,7 @@ export default async function getAllMatches(
   const userId = id;
 
   try {
-    const user = await prisma.match.findMany({
+    const user = await prisma.matchId.findMany({
       where: {
         userId: userId,
       },

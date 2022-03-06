@@ -6,10 +6,10 @@ export interface TeamDto {
   tier: number;
   captain: string;
   abbreviation: string;
-  players: PlayerDto[];
+  players: ClashPlayerDto[];
 }
 
-interface PlayerDto {
+export interface ClashPlayerDto {
   summonerId: string;
   position: string;
   role: string;

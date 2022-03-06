@@ -6,7 +6,7 @@ export default async function createMatchlist(
   res: NextApiResponse
 ) {
   const prisma = new PrismaClient({ log: ["query"] });
-  console.log(`AYO THIS THE THING: ${req.body}`);
+
   try {
     const matchData = req.body;
 

@@ -14,6 +14,7 @@ model Player {
   profileIconId Int
   matches Match[]
   matchlist MatchId[]
+  stats ChampionStats[]
 }
 // Make sure to add something for Kill Participation 
 // Was passing down Match to frontend
@@ -22,9 +23,9 @@ model Match{
   user Player @relation(fields: [userId], references: [id])
   id Int @id @default(autoincrement())
   userId String 
-  kills String
-  deaths String
-  assists String
+  kills Int
+  deaths Int
+  assists Int
   win Boolean
   champion String
   summonerSpell1 Int
@@ -39,10 +40,22 @@ model MatchId {
   user Player @relation(fields: [userId], references: [id])
   userId String
   id Int @id @default(autoincrement())
-  matchId String @unique
+  matchId String 
 
 }
 
-// model champStats {
-//  id , championId, wins, matches, k, d ,a , cs, userId 
-//}
+
+
+model ChampionStats { 
+  user Player @relation(fields: [userId], references: [id])
+  userId String
+  id Int @id @default(autoincrement())
+  championId String
+  wins Int
+  matches Int
+  kills Int
+  deaths Int
+  assists Int
+  cs Int
+
+}

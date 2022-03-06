@@ -1,4 +1,4 @@
-import { MatchV5DTOs } from "twisted/dist/models-dto/matches/match-v5";
+import { MatchDto } from "types/MatchApi";
 
 export const calcCSPerMin = (cs: number, gameLength: number) => {
   const gameLengthMin = gameLength / 1000 / 60; // milliseconds  / second / min
@@ -6,25 +6,23 @@ export const calcCSPerMin = (cs: number, gameLength: number) => {
   return csPerMin;
 };
 
-export const killParticipation = (
-  match: MatchV5DTOs.MatchDto,
-  uuid: string
-) => {
+export const killParticipation = (match: MatchDto, uuid: string) => {
   const allPlayers = match.info.participants;
-  let otherPlayerKills = 0;
+  const user = allPlayers.filter((user) => user.summonerId == uuid);
+  const teamId = user[0].teamId;
+  let allKills = 0;
   let userKP = 0;
-  let userKills = 0;
   for (let i = 0; i < allPlayers.length; i++) {
-    let currentPlayer = allPlayers[i].puuid;
-    let playerStats = allPlayers[i].kills;
+    let onTeam = allPlayers[i].teamId;
+    let currentPlayer = allPlayers[i].summonerId;
+    let playerKills = allPlayers[i].kills;
+    if (onTeam == teamId) {
+      allKills += playerKills;
+    }
     if (currentPlayer == uuid) {
-      userKP = playerStats + allPlayers[i].assists;
-      userKills = playerStats;
-    } else {
-      otherPlayerKills += playerStats;
+      userKP = playerKills + allPlayers[i].assists;
     }
   }
-  const allKills = otherPlayerKills + userKills;
 
   return Math.round((userKP / allKills) * 100);
 };
