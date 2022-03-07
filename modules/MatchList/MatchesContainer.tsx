@@ -37,7 +37,7 @@ const MatchesContainer = ({ matchList, id }: MatchesContainerProps) => {
     <>
       <Container>
         {retreivedMatches.map((match) => {
-          <MatchCard {...getUserStats(match, id)} />;
+          <MatchCard {} />;
         })}
       </Container>
       <Button onClick={clickHandler}>Load More...</Button>

@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://vcatwdosahwujh:8ad597f81d2ad69564f6253c7590dd3623096e9722f13f2efb7b21a3c73dface@ec2-52-204-29-205.compute-1.amazonaws.com:5432/df3sgka0afpaq7"
+  }
+
+model Player {
+  id String @unique
+  userName String 
+  summonerLevel Int
+  profileIconId Int
+  matches Match[]
+  matchlist MatchId[]
+  stats ChampionStats[]
+}
+// Make sure to add something for Kill Participation 
+// Was passing down Match to frontend
+// seems bad. need way to save to DB.
+model Match{
+  user Player @relation(fields: [userId], references: [id])
+  id Int @id @default(autoincrement())
+  userId String 
+  kills Int
+  deaths Int
+  assists Int
+  win Boolean
+  champion String
+  summonerSpell1 Int
+  summonerSpell2 Int
+  cs Int
+  gameLength Int
+  level Int
+  kp Int
+}
+
+model MatchId {
+  user Player @relation(fields: [userId], references: [id])
+  userId String
+  id Int @id @default(autoincrement())
+  matchId String 
+
+}
+
+
+
+model ChampionStats { 
+  user Player @relation(fields: [userId], references: [id])
+  userId String
+  id Int @id @default(autoincrement())
+  championId String
+  wins Int
+  matches Int
+  kills Int
+  deaths Int
+  assists Int
+  cs Int
+
+}
