@@ -40,7 +40,7 @@ export interface ChampStatsProps {
   };
 }
 
-const key = "api_key=RGAPI-fd47f4f0-a6ee-4d5f-99be-efc70f240e7f";
+const key = process.env.API_KEY;
 
 export async function getSummonerId(name: string) {
   // Hardcoded to NA could make it work with diff regions

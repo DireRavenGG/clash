@@ -1,7 +1,6 @@
 import { Button, Container, Group, Input } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { demoStats } from "utils/demoStats";
 import { useGlobalState } from "utils/state";
 import { getSummonerId } from "veigar/api";
 
@@ -54,8 +53,6 @@ const Home = () => {
   };
 
   const demoHandler = () => {
-    const clashStats = demoStats();
-    updateGlobalState("data", clashStats);
     router.push({
       pathname: "/demo",
     });
