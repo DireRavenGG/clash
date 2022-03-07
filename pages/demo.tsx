@@ -3,7 +3,6 @@ import PlayerContainer from "modules/Clash/PlayerContatiner";
 import HomeButton from "modules/HomeButton";
 import withRouter from "next/dist/client/with-router";
 import { useEffect, useState } from "react";
-import { demoStats } from "utils/demoStats";
 import { useGlobalState } from "utils/state";
 import useWindowDimensions from "utils/windowWidth";
 import { ChampStatsProps } from "veigar/api";
@@ -25,20 +24,31 @@ const Demo = () => {
   const [globalState, updateGlobalState] = useGlobalState();
 
   const { height, width } = useWindowDimensions();
-
   useEffect(() => {
-    setGameStats(demoStats());
+    const getData = async () => {
+      const data = await fetch("api/demo")
+        .then((res) => res.json())
+        .then((data) => {
+          return data;
+        })
+        .catch((rejected) => {
+          console.log(rejected);
+        });
+      setGameStats(data);
+    };
+    getData();
   }, []);
 
   let cols = 5;
 
-  console.log(width);
-
-  if (width <= 1200) {
-    cols = 16;
-  } else if (width <= 928) {
-    cols = 1;
+  if (width) {
+    if (width <= 1200) {
+      cols = 16;
+    } else if (width <= 928) {
+      cols = 1;
+    }
   }
+
   return (
     <>
       <Container sx={{ maxWidth: "1500px", justifyContent: "center" }}>
@@ -93,3 +103,6 @@ const Demo = () => {
 };
 
 export default withRouter(Demo);
+function componentDidMount() {
+  throw new Error("Function not implemented.");
+}

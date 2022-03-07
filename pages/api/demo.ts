@@ -1,5 +1,5 @@
-export const demoStats = () => {
-  return [
+export default function handler(req: any, res: any) {
+  res.status(200).json([
     {
       name: "The Cãptain",
       profileIconId: 5168,
@@ -984,5 +984,5 @@ export const demoStats = () => {
         },
       ],
     },
-  ];
-};
+  ]);
+}
