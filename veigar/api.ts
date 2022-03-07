@@ -28,21 +28,9 @@ interface Player {
   matchlist: MatchIdArr[];
 }
 
-interface ClashTeamProps {
-  name: string;
-  profileIconId: number;
-  summonerLevel: number;
-  rank: string;
-  lp: number;
-  tier: string;
-  wins: number;
-  losses: number;
-  champStats: ChampStatsProps[];
-}
-
 export interface ChampStatsProps {
   champion: string;
-  champStats: {
+  stats: {
     matches: number;
     wins: number;
     kills: number;
@@ -52,7 +40,7 @@ export interface ChampStatsProps {
   };
 }
 
-const key = "api_key=RGAPI-a142fc80-f8b3-4486-a10d-5ff5cc5b6a60";
+const key = "api_key=RGAPI-fd47f4f0-a6ee-4d5f-99be-efc70f240e7f";
 
 export async function getSummonerId(name: string) {
   // Hardcoded to NA could make it work with diff regions
@@ -282,7 +270,7 @@ async function getMatchByMatchId(
       } else {
         clearInterval(interval);
       }
-    }, 2500);
+    }, 5500);
     const matches: Match[] = await getMatchesFromDB(userData);
     return matches;
   } else {

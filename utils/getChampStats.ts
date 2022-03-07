@@ -16,7 +16,7 @@ export const getChampStats = async (matches: Match[]) => {
     if (index == -1) {
       arrChampionStats.push({
         champion: match.champion,
-        champStats: {
+        stats: {
           matches: 1,
           wins: win,
           kills: match.kills,
@@ -26,12 +26,12 @@ export const getChampStats = async (matches: Match[]) => {
         },
       });
     } else {
-      arrChampionStats[index].champStats.matches += 1;
-      arrChampionStats[index].champStats.wins += win;
-      arrChampionStats[index].champStats.kills += match.kills;
-      arrChampionStats[index].champStats.deaths += match.deaths;
-      arrChampionStats[index].champStats.assists += match.assists;
-      arrChampionStats[index].champStats.cs += match.cs;
+      arrChampionStats[index].stats.matches += 1;
+      arrChampionStats[index].stats.wins += win;
+      arrChampionStats[index].stats.kills += match.kills;
+      arrChampionStats[index].stats.deaths += match.deaths;
+      arrChampionStats[index].stats.assists += match.assists;
+      arrChampionStats[index].stats.cs += match.cs;
     }
   });
 
