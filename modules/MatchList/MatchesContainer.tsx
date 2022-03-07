@@ -35,12 +35,12 @@ const MatchesContainer = ({ matchList, id }: MatchesContainerProps) => {
 
   return (
     <>
-      <Container>
+      {/* <Container>
         {retreivedMatches.map((match) => {
-          <MatchCard {} />;
+          <MatchCard  />;
         })}
       </Container>
-      <Button onClick={clickHandler}>Load More...</Button>
+      <Button onClick={clickHandler}>Load More...</Button> */}
     </>
   );
 };
