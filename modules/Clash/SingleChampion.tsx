@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Container,
-  Grid,
-  Group,
-  SimpleGrid,
-  Text,
-} from "@mantine/core";
+import { Avatar, Grid, Text } from "@mantine/core";
 
 interface SingleChampionProps {
   champion: string;
