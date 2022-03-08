@@ -4,7 +4,6 @@ import { PlayerDto } from "../types/ClashById";
 import { ClashPlayerDto, TeamDto } from "types/ClashTeam";
 import { MatchDto } from "../types/MatchApi";
 import { getChampStats } from "utils/getChampStats";
-import { Match } from "@prisma/client";
 
 interface MatchIdArr {
   id?: number;
@@ -270,10 +269,10 @@ async function getMatchByMatchId(
         clearInterval(interval);
       }
     }, 5500);
-    const matches: Match[] = await getMatchesFromDB(userData);
+    const matches: any[] = await getMatchesFromDB(userData);
     return matches;
   } else {
-    const matches: Match[] = userData.matches;
+    const matches: any[] = userData.matches;
     return matches;
   }
 }
@@ -328,9 +327,7 @@ async function matchesCall(matchId: string) {
 }
 
 async function getMatchesFromDB(userData: Player) {
-  const data: Match[] = await fetch(
-    `/api/database/getAllMatches/${userData.id}`
-  )
+  const data: any[] = await fetch(`/api/database/getAllMatches/${userData.id}`)
     .then((res) => res.json())
     .then((data) => {
       return data;
@@ -388,7 +385,7 @@ const lottaShit = (playerArr: ClashPlayerDto[]) => {
       userData
     );
 
-    const matches: Match[] = await getMatchByMatchId(
+    const matches: any[] = await getMatchByMatchId(
       allMatchIds,
       userData,
       player.summonerId
