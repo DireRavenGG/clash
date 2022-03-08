@@ -1,5 +1,4 @@
 import { Container, Group } from "@mantine/core";
-import { ChampStatsProps } from "veigar/api";
 import ChampStats from "./ChampStats";
 import PlayerInfo from "./PlayerInfo";
 import PlayerRank from "./PlayerRank";
