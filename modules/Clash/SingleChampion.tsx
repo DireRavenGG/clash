@@ -33,7 +33,12 @@ const SingleChampion = ({
   return (
     <Grid justify="center" align="center">
       <Grid.Col span={2} sx={{ padding: 0 }}>
-        <Avatar alt="champion" size="sm" radius="xl" src={`/${champion}.png`} />
+        <Avatar
+          alt="champion"
+          size="sm"
+          radius="xl"
+          src={`http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${champion}.png`}
+        />
       </Grid.Col>
       <Grid.Col span={5}>
         <Text align="center" color={color} size="xs">
