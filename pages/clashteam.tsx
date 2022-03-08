@@ -1,6 +1,5 @@
 import { Grid, Group, SimpleGrid } from "@mantine/core";
 import PlayerContainer from "modules/Clash/PlayerContatiner";
-import MatchesContainer from "modules/MatchList/MatchesContainer";
 import { withRouter } from "next/router";
 import { ClashDataProps } from "pages";
 import { useEffect, useState } from "react";

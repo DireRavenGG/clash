@@ -1,7 +1,6 @@
-import { Match } from "@prisma/client";
 import { ChampStatsProps } from "veigar/api";
 
-export const getChampStats = async (matches: Match[]) => {
+export const getChampStats = async (matches: any[]) => {
   const arrChampionStats: ChampStatsProps[] = [];
 
   matches.map((match) => {
