@@ -1,4 +1,5 @@
 import { Container } from "@mantine/core";
+import { useMemo } from "react";
 import SingleChampion from "./SingleChampion";
 import { orderChamps } from "./utils/orderChamps";
 
@@ -6,7 +7,7 @@ interface ChampProps {
   champStats: any[];
 }
 const ChampStats = ({ champStats }: ChampProps) => {
-  const ordered = orderChamps(champStats);
+  const ordered = useMemo(() => orderChamps(champStats), [champStats]);
 
   return (
     <Container>

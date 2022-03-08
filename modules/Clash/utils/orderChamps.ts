@@ -3,6 +3,7 @@ export const orderChamps = (allGames: any[]) => {
   if (allGames.length < 10) {
     return allGames;
   } else {
+    console.log(allGames);
     return allGames.slice(0, 10);
   }
 };
