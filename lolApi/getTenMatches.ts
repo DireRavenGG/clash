@@ -1,6 +1,5 @@
 import { matchesCall } from "./matchesCall";
 import { RateLimiter } from "limiter";
-import { Match } from "@prisma/client";
 import { getUserStats } from "utils/getUserStats";
 import { matchData } from "utils/matchData";
 
