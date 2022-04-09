@@ -25,16 +25,17 @@ export async function getMatchByMatchId(
     var interval = setInterval(async () => {
       if (i < newMatchIds.length) {
         let match = await matchesCall(newMatchIds[i].matchId);
+        if (match == undefined) return;
         matchesArr.push(match);
         saveSingleMatches(match, ssid);
 
         i++;
       } else {
         clearInterval(interval);
+        const matches: any[] = await getMatchesFromDB(userData);
+        return matches;
       }
     }, 5500);
-    const matches: any[] = await getMatchesFromDB(userData);
-    return matches;
   } else {
     const matches: any[] = userData.matches;
     return matches;

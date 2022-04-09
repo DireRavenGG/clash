@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 import { ClashDataProps } from "pages";
 import { useEffect, useState } from "react";
 import { useGlobalState } from "utils/state";
-import { ChampStatsProps } from "veigar/api";
+import { ChampStatsProps } from "lolApi/getClashData";
 
 interface ClashTeamProps {
   name: string;

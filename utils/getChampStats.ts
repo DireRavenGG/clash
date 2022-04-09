@@ -1,4 +1,4 @@
-import { ChampStatsProps } from "veigar/api";
+import { ChampStatsProps } from "lolApi/getClashData";
 
 export const getChampStats = async (matches: any[]) => {
   const arrChampionStats: ChampStatsProps[] = [];

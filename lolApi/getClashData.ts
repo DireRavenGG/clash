@@ -20,13 +20,19 @@ export interface ChampStatsProps {
   };
 }
 
-const key = process.env.API_KEY;
+const key = process.env.NEXT_PUBLIC_API_KEY;
 
 export async function getClashData(name: string) {
+  if (!key) return;
   // Hardcoded to NA could make it work with diff regions
-  let link = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?${key}`;
+  let link = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}`;
 
-  const data = await fetch(link)
+  const data = await fetch(link, {
+    method: "GET",
+    headers: {
+      "X-Riot-Token": key,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       return data;
@@ -97,19 +103,18 @@ const lottaShit = (playerArr: ClashPlayerDto[]) => {
     const allMatches = soloQueue.wins + soloQueue.losses;
 
     const allMatchIds = await getMatchlist(
-      player.summonerId,
       bySIDData.puuid,
       allMatches,
       userData
     );
 
-    const matches: any[] = await getMatchByMatchId(
+    const matches = await getMatchByMatchId(
       allMatchIds,
       userData,
       player.summonerId
     );
 
-    const champStats = await getChampStats(matches);
+    const champStats = await getChampStats(matches!);
 
     return {
       name: bySIDData.name,
