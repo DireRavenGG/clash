@@ -2,7 +2,7 @@ import { Button, Container, Group, Input } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useGlobalState } from "utils/state";
-import { getClashData } from "lolApi/getClashData";
+import { getSummonerId } from "veigar/api";
 
 export interface ClashDataProps {
   setClashData: Dispatch<SetStateAction<{}[]>>;
@@ -12,7 +12,7 @@ const Home = () => {
   const [text, setText] = useState("");
   const [clashLive, setClashLive] = useState(false);
   const [data, setData] = useState<any>();
-  const [forTeam, setForTeam] = useState(false);
+  const [cheese, setCheese] = useState<any>();
   const router = useRouter();
 
   const textHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,27 +20,19 @@ const Home = () => {
   };
   const [globalState, updateGlobalState] = useGlobalState();
 
+  // useEffect(() => {
+  //   updateGlobalState("data", data);
+  // }, []);
+
   const submitHandler = async () => {
-    if (forTeam) {
-      router.push({
-        pathname: "/summoner/[summonerName]",
-
-        query: {
-          summonerName: text,
-        },
-      });
-
-      return;
-    }
     if (!clashLive) {
       router.push({
         pathname: "/clashNotLive",
       });
       return;
     }
-    const x = await getClashData(text);
+    const x = await getSummonerId(text);
     let newArr: any[] = [];
-    if (!x) return;
     if (x.length == 5) {
       x.forEach((result) => {
         if (result.status === "fulfilled") {
@@ -66,10 +58,6 @@ const Home = () => {
     });
   };
 
-  const teamHandler = () => {
-    setForTeam(!forTeam);
-  };
-
   return (
     <>
       <Container mt={300}>
@@ -84,10 +72,7 @@ const Home = () => {
           </Group>
 
           <Group sx={{ marginTop: "20px", justifyContent: "center" }}>
-            {forTeam ? null : <Button onClick={demoHandler}>Demo</Button>}
-            <Button onClick={teamHandler}>
-              {forTeam ? "clash" : "single"}
-            </Button>
+            <Button onClick={demoHandler}>Demo</Button>
           </Group>
         </Group>
       </Container>

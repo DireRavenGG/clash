@@ -1,14 +1,14 @@
 import { Player } from "types/ApiDB";
 require("dotenv").config();
 
-const key = process.env.NEXT_PUBLIC_API_KEY;
+const key = process.env.API_KEY;
 
 export async function getMatchlist(
+  ssid: string,
   puuid: string,
   allMatches: number,
   userData: Player
 ) {
-  if (!key) return [];
   let start = "start=0";
   let count = "count=100";
   let counter = 0;
@@ -28,13 +28,7 @@ export async function getMatchlist(
       console.log(`${start}`);
       console.log(`${count}`);
       const data = await fetch(
-        `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}`,
-        {
-          method: "GET",
-          headers: {
-            "X-Riot-Token": key,
-          },
-        }
+        `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}&${key}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -60,13 +54,7 @@ export async function getMatchlist(
         counter++;
 
         const data = await fetch(
-          `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}`,
-          {
-            method: "GET",
-            headers: {
-              "X-Riot-Token": key,
-            },
-          }
+          `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}&${key}`
         )
           .then((res) => res.json())
           .then((data) => {
@@ -86,7 +74,7 @@ export async function getMatchlist(
 
   const dbMatchlist = [];
   for (let i = 0; reversedMatchlist.length > i; i++) {
-    dbMatchlist.push({ userId: puuid, matchId: reversedMatchlist[i] });
+    dbMatchlist.push({ userId: ssid, matchId: reversedMatchlist[i] });
   }
   await fetch("/api/database/createMatchlist", {
     method: "POST",

@@ -16,38 +16,39 @@ export async function isUserInDB({
       console.log(rejected);
     });
 
-  if (data.user) {
-    const matchIdData = await fetch(`/api/database/getMatchlistById/${puuid}`)
-      .then((res) => res.json())
-      .then((data) => {
-        return data;
-      })
-      .catch((rejected) => {
-        console.log(rejected);
-      });
+  const matchIdData = await fetch(`/api/database/getMatchlistById/${puuid}`)
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((rejected) => {
+      console.log(rejected);
+    });
 
-    const matchesData = await fetch(`/api/database/getAllMatches/${puuid}`)
-      .then((res) => res.json())
-      .then((data) => {
-        return data;
-      })
-      .catch((rejected) => {
-        console.log(rejected);
-      });
+  const matchesData = await fetch(`/api/database/getAllMatches/${puuid}`)
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((rejected) => {
+      console.log(rejected);
+    });
+
+  if (!data.user) {
+    createUser({ puuid, name, profileIconId, summonerLevel });
     return {
-      ...data.user,
-      matches: [...matchesData.user],
-      matchlist: [...matchIdData.user],
+      id: puuid,
+      userName: name,
+      summonerLevel: summonerLevel,
+      profileIconId: profileIconId,
+      matches: [],
+      matchlist: [],
     };
   }
 
-  createUser({ puuid, name, profileIconId, summonerLevel });
   return {
-    id: puuid,
-    userName: name,
-    summonerLevel: summonerLevel,
-    profileIconId: profileIconId,
-    matches: [],
-    matchlist: [],
+    ...data.user,
+    matches: [...matchesData.user],
+    matchlist: [...matchIdData.user],
   };
 }

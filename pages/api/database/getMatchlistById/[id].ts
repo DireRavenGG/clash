@@ -2,13 +2,11 @@ import { NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 
 export default async function getAllMatches(
-  { query: { id } }: { query: any },
+  { query: { id } }: { query: any; id: string },
   res: NextApiResponse
 ) {
   const prisma = new PrismaClient({ log: ["query"] });
-  const userId: string = id;
-
-  console.log(123, userId);
+  const userId = id;
 
   try {
     const user = await prisma.matchId.findMany({
@@ -16,13 +14,9 @@ export default async function getAllMatches(
         userId: userId,
       },
     });
-
-    console.log(user);
-
     res.status(200);
     res.json({ user });
   } catch (e) {
-    res.status(500);
     res.json({ error: "User not found" });
   } finally {
     await prisma.$disconnect();

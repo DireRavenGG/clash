@@ -1,18 +1,12 @@
 import { Summoner } from "types/Summoner";
 require("dotenv").config();
 
-const key = process.env.NEXT_PUBLIC_API_KEY;
+const key = process.env.API_KEY;
 
 export async function summonerStats(summonerId: string) {
-  if (!key) return [];
-  let link = `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`;
+  let link = `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?${key}`;
 
-  const data: Summoner[] = await fetch(link, {
-    method: "GET",
-    headers: {
-      "X-Riot-Token": key,
-    },
-  })
+  const data: Summoner[] = await fetch(link)
     .then((res) => res.json())
     .then((data) => {
       return data;
