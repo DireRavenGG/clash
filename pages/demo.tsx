@@ -5,7 +5,7 @@ import withRouter from "next/dist/client/with-router";
 import { useEffect, useState } from "react";
 import { useGlobalState } from "../utils/state";
 import useWindowDimensions from "../utils/windowWidth";
-import { ChampStatsProps } from "../../frontend/lolApi/getClashData";
+import { ChampStatsProps } from "../lolApi/getClashData";
 
 interface DemoProps {
   name: string;
