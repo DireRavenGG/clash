@@ -46,8 +46,25 @@ export async function getTenMatches({
     diffMatchLength
   );
 
-  const matchesRetrieved = [];
+  const matchesRetrieved: any = [];
+  const promises = [];
 
+  for (let i = 0; i < matchesIdsToGet.length; i++) {
+    promises.push(matchesCall(matchesIdsToGet[i].matchId));
+  }
+  const result = await Promise.all(promises);
+  result.forEach((match) => {
+    if (!match) {
+      return;
+    }
+
+    matchesRetrieved.push(matchData(match, ssid));
+  });
+
+  return matchesRetrieved;
+}
+
+/*
   for (let i = 0; i < matchesIdsToGet.length; i++) {
     const remainingRequests = await limiter.removeTokens(1);
     console.log(remainingRequests);
@@ -58,6 +75,4 @@ export async function getTenMatches({
       matchesRetrieved.push(matchStats);
     }
   }
-
-  return matchesRetrieved;
-}
+*/

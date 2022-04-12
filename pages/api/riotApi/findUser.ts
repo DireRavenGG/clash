@@ -1,9 +1,10 @@
+import { NextApiResponse } from "next";
 import getSummonerData from "./functions/getSummonerData";
 
 const key = process.env.NEXT_PUBLIC_API_KEY;
 export default async function findUser(
   req: { query: { userName: string } },
-  res: any
+  res: NextApiResponse
 ) {
   if (!key) return;
   const userName = req.query.userName;

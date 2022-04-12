@@ -1,10 +1,11 @@
+import { NextApiResponse } from "next";
 import getMatchList from "./functions/getMatchList";
 
 const key = process.env.NEXT_PUBLIC_API_KEY;
 
 export default async function allMatches(
   req: { query: { puuid: string; start: string; count: string } },
-  res: any
+  res: NextApiResponse
 ) {
   if (!key) return;
   const puuid = req.query.puuid;
