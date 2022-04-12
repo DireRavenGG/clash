@@ -1,7 +1,7 @@
 import { Button, Center, Grid, Group, Skeleton } from "@mantine/core";
-import { getSingleSummoner } from "../../../frontend/lolApi/getSingleSummoner";
-import { getTenMatches } from "../../../frontend/lolApi/getTenMatches";
-import { userRank } from "../../../frontend/lolApi/userRank";
+import { getSingleSummoner } from "../../lolApi/getSingleSummoner";
+import { getTenMatches } from "../../lolApi/getTenMatches";
+import { userRank } from "../../lolApi/userRank";
 import StatPage from "../../modules/StatPage/StatPage";
 import SummonerContainer from "../../modules/StatPage/Summoner/SummonerContainer";
 import { useRouter, withRouter } from "next/router";
