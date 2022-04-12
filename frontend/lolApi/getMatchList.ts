@@ -57,24 +57,6 @@ export async function getMatchlist(
         start = `start=${counter * 100}`;
         counter++;
 
-        // const data = await fetch(
-        //   `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}`,
-        //   {
-        //     method: "GET",
-        //     headers: {
-        //       "X-Riot-Token": key,
-        //     },
-        //   }
-        // )
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     return data;
-        //   })
-        //   .catch((rejected) => {
-        //     console.log(rejected);
-        //   });
-
-        // matchListArr.push(...data);
         const data = await axios
           .get("http://localhost:4000/allMatches", {
             params: {

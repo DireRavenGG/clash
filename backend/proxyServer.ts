@@ -22,15 +22,14 @@ app.get("/findUser", async (req: any, res: any) => {
   res.json(data);
 });
 
-app.get("/allMatches"),
-  async (req: any, res: any) => {
-    if (!key) return;
-    const puuid = req.query.puuid;
-    const start = req.query.start;
-    const count = req.query.count;
-    const data = await getMatchList(puuid, start, count, key);
-    res.json(data);
-  };
+app.get("/allMatches", async (req: any, res: any) => {
+  if (!key) return;
+  const puuid = req.query.puuid;
+  const start = req.query.start;
+  const count = req.query.count;
+  const data = await getMatchList(puuid, start, count, key);
+  res.json(data);
+});
 
 app.get("/rank", async (req: any, res: any) => {
   if (!key) return;

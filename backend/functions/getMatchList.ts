@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export default function getMatchList(
+export default async function getMatchList(
   puuid: string,
-  start: number,
-  count: number,
+  start: string,
+  count: string,
   key: string
 ) {
-  return axios
+  return await axios
     .get(
       `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?queue=420&${start}&${count}`,
       {
