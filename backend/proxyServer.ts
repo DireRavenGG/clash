@@ -6,6 +6,7 @@ import matchCall from "./functions/matchCall";
 require("dotenv").config();
 var express = require("express");
 var cors = require("cors");
+var path = require("path")
 
 var app = express();
 
@@ -13,6 +14,12 @@ app.use(cors());
 app.options("*", cors());
 
 const key = process.env.NEXT_PUBLIC_API_KEY;
+
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+app.get('*', (req: any, res: any) => {
+  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+})
 
 app.get("/findUser", async (req: any, res: any) => {
   if (!key) return;
