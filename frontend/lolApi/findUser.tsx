@@ -3,7 +3,7 @@ import { SummonerByName } from "../types/SummonerByName";
 
 export async function findUser(name: string) {
   const data = await axios
-    .get("http://localhost:4000/findUser", {
+    .get("/api/riotApi/findUser", {
       params: {
         userName: name,
       },

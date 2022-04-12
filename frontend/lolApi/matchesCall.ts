@@ -4,7 +4,7 @@ require("dotenv").config();
 
 export async function matchesCall(matchId: string) {
   const data: MatchDto = await axios
-    .get("http://localhost:4000/matchesCall", {
+    .get("/api/riotApi/matchesCall", {
       params: {
         matchId: matchId,
       },

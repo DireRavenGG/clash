@@ -30,7 +30,7 @@ export async function getMatchlist(
       console.log(`${count}`);
 
       const data = await axios
-        .get("http://localhost:4000/allMatches", {
+        .get("/api/riotApi/allMatches", {
           params: {
             puuid: puuid,
             start: start,
@@ -58,7 +58,7 @@ export async function getMatchlist(
         counter++;
 
         const data = await axios
-          .get("http://localhost:4000/allMatches", {
+          .get("/api/riotApi/allMatches", {
             params: {
               puuid: puuid,
               start: start,

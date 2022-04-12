@@ -8,7 +8,7 @@ export async function summonerStats(summonerId: string) {
   if (!key) return [];
 
   const data: Summoner[] = await axios
-    .get("http://localhost:4000/rank", {
+    .get("/api/riotApi/rank", {
       params: {
         id: summonerId,
       },

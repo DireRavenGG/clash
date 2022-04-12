@@ -5,24 +5,9 @@ const key = process.env.NEXT_PUBLIC_API_KEY;
 export async function userRank(name: string) {
   const data = await findUser(name);
   if (!name || !key || !data) return;
-  let link = `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${data.id}`;
-
-  // const rank: Summoner[] = await fetch(link, {
-  //   method: "GET",
-  //   headers: {
-  //     "X-Riot-Token": key,
-  //   },
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     return data;
-  //   })
-  //   .catch((rejected) => {
-  //     console.log(rejected);
-  //   });
 
   const rank: Summoner[] = await axios
-    .get("http://localhost:4000/rank", {
+    .get("/api/riotApi/rank", {
       params: {
         id: data.id,
       },
