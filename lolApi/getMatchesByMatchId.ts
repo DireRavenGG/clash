@@ -19,8 +19,7 @@ export async function getMatchByMatchId(
     const matchIdMinusOne = matchIdArr.length;
     const start = matchIdMinusOne - diffMatchesSaved;
     const newMatchIds = matchIdArr.slice(start, matchIdMinusOne);
-    console.log(`New Match: ${newMatchIds.length}`);
-    console.log(`MatchIdsMinusOne: ${start}`);
+
     let i = 0;
     var interval = setInterval(async () => {
       if (i < newMatchIds.length) {

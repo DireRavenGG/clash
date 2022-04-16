@@ -62,7 +62,6 @@ const Summoner = () => {
     summonerCol = 10;
     matchCol = 10;
   }
-  console.log(width, summonerCol, matchCol);
 
   if (matchData) {
     return (

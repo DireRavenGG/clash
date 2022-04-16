@@ -2,6 +2,7 @@ var axios = require("axios");
 
 export default function findUser(name: string, key: string) {
   let link = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}`;
+  console.log(name);
 
   return axios
     .get(link, {

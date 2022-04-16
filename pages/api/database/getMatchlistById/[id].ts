@@ -8,16 +8,12 @@ export default async function getAllMatches(
   const prisma = new PrismaClient({ log: ["query"] });
   const userId: string = id;
 
-  console.log(123, userId);
-
   try {
     const user = await prisma.matchId.findMany({
       where: {
         userId: userId,
       },
     });
-
-    console.log(user);
 
     res.status(200);
     res.json({ user });

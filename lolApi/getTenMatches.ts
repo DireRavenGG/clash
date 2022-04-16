@@ -36,7 +36,7 @@ export async function getTenMatches({
   const diffMatchLength = matchIdData.user.length - currentMatchesLength;
 
   let amountToAdd = 10;
-  console.log(diffMatchLength);
+
   if (diffMatchLength < 10) {
     amountToAdd = diffMatchLength;
   }

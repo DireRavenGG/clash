@@ -26,8 +26,6 @@ export async function getMatchlist(
 
       start = `start=${counter * 100}`;
       counter++;
-      console.log(`${start}`);
-      console.log(`${count}`);
 
       const data = await axios
         .get("/api/riotApi/allMatches", {
@@ -53,7 +51,7 @@ export async function getMatchlist(
         } else {
           allMatches -= 100;
         }
-        console.log(count);
+
         start = `start=${counter * 100}`;
         counter++;
 

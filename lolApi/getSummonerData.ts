@@ -17,6 +17,6 @@ export async function summonerStats(summonerId: string) {
     .catch(function (error) {
       console.log(error);
     });
-  console.log(data);
+
   return data;
 }

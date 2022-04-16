@@ -4,7 +4,6 @@ import Rank from "./Rank";
 import SummonerIcon from "./SummonerIcon";
 
 const SummonerContainer = (data: RankAndSummoner) => {
-  console.log(data);
   return (
     <>
       <Card>
