@@ -51,12 +51,10 @@ const Demo = () => {
 
   return (
     <>
-      <Container sx={{ maxWidth: "1500px", justifyContent: "center" }}>
-        <Group
-          direction="column"
-          align="center"
-          sx={{ width: "100%", marginTop: "50px" }}
-        >
+      <Container
+        sx={{ maxWidth: "1500px", justifyContent: "center", marginTop: "50px" }}
+      >
+        <Group direction="column" align="center" sx={{ width: "100%" }}>
           <HomeButton />
           <Group direction="row">
             <Image src="/RosterLogo.png" alt="roster logo" width={75} />

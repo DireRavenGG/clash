@@ -1,6 +1,6 @@
-import { Button, Container, Group, Input } from "@mantine/core";
+import { Button, Center, Container, Group, Input, Title } from "@mantine/core";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useGlobalState } from "../utils/state";
 import { getClashData } from "../lolApi/getClashData";
 
@@ -20,7 +20,11 @@ const Home = () => {
   };
   const [globalState, updateGlobalState] = useGlobalState();
 
-  const submitHandler = async () => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (text == "") {
+      return;
+    }
     if (forTeam) {
       router.push({
         pathname: "/summoner/[summonerName]",
@@ -38,26 +42,26 @@ const Home = () => {
       });
       return;
     }
-    const x = await getClashData(text);
-    let newArr: any[] = [];
-    if (!x) return;
-    if (x.length == 5) {
-      x.forEach((result) => {
-        if (result.status === "fulfilled") {
-          newArr.push(result.value);
-        } else {
-          console.log(result.status, result.reason);
-        }
-      });
+    // const x = await getClashData(text);
+    // let newArr: any[] = [];
+    // if (!x) return;
+    // if (x.length == 5) {
+    //   x.forEach((result) => {
+    //     if (result.status === "fulfilled") {
+    //       newArr.push(result.value);
+    //     } else {
+    //       console.log(result.status, result.reason);
+    //     }
+    //   });
 
-      setData(newArr);
-    }
-    if (newArr.length == x.length) {
-      console.log(newArr);
-      router.push({
-        pathname: "/clashteam",
-      });
-    }
+    //   setData(newArr);
+    // }
+    // if (newArr.length == x.length) {
+    //   console.log(newArr);
+    //   router.push({
+    //     pathname: "/clashteam",
+    //   });
+    // }
   };
 
   const demoHandler = () => {
@@ -74,19 +78,29 @@ const Home = () => {
     <>
       <Container mt={300}>
         <Group direction="column" grow>
-          <Group grow>
-            <Input
-              onChange={textHandler}
-              placeholder="ex. Hide on Bush"
-              value={text}
-              rightSection={<Button onClick={submitHandler}>Search</Button>}
-            />
+          <Title
+            align="center"
+            sx={{ paddingBottom: "24px", fontSize: "56px" }}
+          >
+            GG.PO
+          </Title>
+          <Group grow sx={{ paddingRight: "24px" }}>
+            <form onSubmit={submitHandler}>
+              <Input
+                onChange={textHandler}
+                placeholder="ex. Hide on Bush"
+                value={text}
+                rightSection={<Button type="submit">Search</Button>}
+              />
+            </form>
           </Group>
 
-          <Group sx={{ marginTop: "20px", justifyContent: "center" }}>
+          <Group
+            sx={{ marginTop: "24px", justifyContent: "center", padding: "4px" }}
+          >
             {forTeam ? null : <Button onClick={demoHandler}>Demo</Button>}
             <Button onClick={teamHandler}>
-              {forTeam ? "clash" : "single"}
+              {forTeam ? "Clash" : "Single"}
             </Button>
           </Group>
         </Group>
